@@ -119,7 +119,3 @@ The Lagrange equilibrium places N bodies at the vertices of a regular polygon, w
 ## History
 
 This simulator was originally written as a Java Applet for web browsers. It has been updated to run as a standalone desktop application.
-
-## License
-
-Educational/Research use.
