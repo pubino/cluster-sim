@@ -1,5 +1,7 @@
 # Star Cluster Simulator
 
+Part of [Vanderbei's Java Simulations](https://github.com/pubino/vanderbei-apps) collection.
+
 A Java-based N-body gravitational simulator by Professor Robert Vanderbei, Princeton University, for studying star cluster dynamics. This simulation demonstrates various configurations including Lagrange equilibria, figure-eight three-body orbits, Gaussian distributions, and Saturn's co-orbital moons.
 
 ## Overview
