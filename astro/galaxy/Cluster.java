@@ -2,7 +2,6 @@ package astro.galaxy;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.applet.*;
 // import java.awt.image.*;
 // import java.util.*;
 // import java.io.*;
@@ -12,7 +11,7 @@ import javax.swing.*;
 
 import myutil.*;
 
-public class Cluster extends JApplet implements ActionListener, WindowListener,
+public class Cluster extends JPanel implements SimApp, ActionListener, WindowListener,
 						ItemListener
 {	
         JTextField ROTRATE;
@@ -163,7 +162,7 @@ public class Cluster extends JApplet implements ActionListener, WindowListener,
 	    cc.setSize(400,400);
 	    cc.setVisible(true);
 
-	    Container c = getContentPane();
+	    Container c = this;
 	    c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));
 	    c.add(cc);
 	    c.add(cp);
@@ -172,6 +171,10 @@ public class Cluster extends JApplet implements ActionListener, WindowListener,
 	    c.add(bp);
 	    // add(cc);
 	    // cc.show();
+	}
+
+	public void start() {
+		// No-op for this simulation
 	}
 
 	public void itemStateChanged(ItemEvent e) {
