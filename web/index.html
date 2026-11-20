@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Star Cluster</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow"><a href="https://pubino.github.io/vanderbei-apps/#cluster-sim">Vanderbei’s applications</a> · Princeton University</p>
+      <h1>Star Cluster</h1>
+      <p class="intro">Compare how gravity moves stars in a cluster, or follow test particles near Saturn and Janus. Tilt the view to inspect the orbits in three dimensions.</p>
+    </header>
+    <section class="panel" aria-labelledby="plot-title">
+      <h2 id="plot-title">Orbit view</h2>
+      <div class="viewer">
+        <div>
+          <canvas id="plot" width="720" height="720" role="img" aria-label="Projected 3D positions of stars and orbiting bodies"></canvas>
+          <dl class="facts">
+            <div><dt>Step</dt><dd id="step-number">—</dd></div>
+            <div><dt>Model time</dt><dd id="time">—</dd></div>
+            <div><dt>Bodies</dt><dd id="body-count">—</dd></div>
+          </dl>
+        </div>
+        <form id="settings">
+          <fieldset id="inputs" disabled>
+            <legend>Simulation</legend>
+            <label class="field" for="preset">Instance</label>
+            <select id="preset" data-initial></select>
+            <label class="field" for="method">Integrator</label>
+            <select id="method" data-initial>
+              <option value="leapfrog">Midpoint (Leapfrog)</option>
+              <option value="hermite">Hermite</option>
+              <option value="gas">Gas Model</option>
+              <option value="euler">Euler</option>
+              <option value="animate">Animate Only</option>
+            </select>
+            <div class="form-grid">
+              <label class="field">Time step<input id="dt" type="number" min="0.00000001" max="0.2" step="any" value="0.001" required></label>
+              <label class="field" title="Steps per displayed frame">Warp<input id="warp" type="number" min="1" max="500" step="1" value="5" required></label>
+              <label class="field">Bodies<input id="count" data-initial type="number" min="2" max="400" step="1" value="100" required></label>
+              <label class="field">Frame rotation<input id="rotation" type="number" min="-10000" max="10000" step="any" value="0" required></label>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button id="play" type="button" disabled>Start</button>
+            <button id="step" type="button" class="secondary" disabled>Step</button>
+            <button id="reset" type="button" class="secondary" disabled>Reset</button>
+          </div>
+          <p class="hint">Timing and frame rotation edits apply on the next step.</p>
+          <p id="status" class="hint" role="status">Loading the Python engine…</p>
+          <p id="error" role="alert" hidden></p>
+          <button id="retry" class="secondary" type="button" hidden>Reload</button>
+          <fieldset class="view-settings">
+            <legend>View</legend>
+
+            <label class="field">Zoom<input id="zoom" data-view type="range" min="-3" max="5" step="0.25" value="0"></label>
+            <label class="field">Inclination<input id="inclination" data-view type="range" min="-90" max="90" step="1" value="0"></label>
+            <label class="switch"><input id="trails" type="checkbox"> Recent trails</label>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <p>Based on Robert Vanderbei’s original Java application. Python runs in your browser via
+        <a href="https://pyodide.org/">Pyodide</a>. <a href="https://github.com/pubino/cluster-sim">Source on GitHub</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>

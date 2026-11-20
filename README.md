@@ -1,5 +1,41 @@
 # Star Cluster Simulator
 
+[Run in your browser](https://pubino.github.io/cluster-sim/).
+
+The browser runs the Java app’s Leapfrog, Hermite, Gas Model, Euler and
+Animate Only modes. Leapfrog keeps the original initial half-kick. The Gas
+Model sorts bodies into mass shells around the original coordinate origin.
+
+The Saturn/Janus preset starts with 994 bodies. Java initializes dust in
+groups of 16 and leaves six blank entries at the desktop default of 1000.
+The browser accepts 2 bodies or a count such as 16–18, 32–34 or 992–994.
+The Java menu’s Epimetheus/Janus entry has no matching initializer. Its
+RungeKutta4 and TrapNewt entries have no corresponding update in ClusterCanvas.
+The browser lists the presets and integration modes with runnable Java models.
+
+The Python model runs in a Pyodide worker. The test suite compares coordinates,
+velocities and derivatives against the original Java engine.
+
+### Browser development
+
+```sh
+docker-compose up --build preview
+# Open http://localhost:8000
+docker-compose run --build --rm js-check
+docker-compose run --build --rm test
+```
+
+For a local test with JDK 25, uv and Node installed:
+
+```sh
+uv sync --locked --python 3.13.12
+uv run python scripts/build_site.py
+uv run playwright install --only-shell chromium
+uv run python -m unittest discover -s tests -v
+npm ci
+npm run check
+```
+
 Part of [Prof. Robert Vanderbei's Java Applications](https://pubino.github.io/vanderbei-apps#cluster-sim).
 
 A Java-based N-body gravitational simulator by Professor Robert Vanderbei, Princeton University, for studying star cluster dynamics. This simulation demonstrates various configurations including Lagrange equilibria, figure-eight three-body orbits, Gaussian distributions, and Saturn's co-orbital moons.
